@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+env/
+venv/
+ENV/
+
+# FastAPI
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+build/
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
