@@ -1,14 +1,18 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/contactos_db')
+DATABASE_URL = "postgresql://postgres.cexdrowkehdimexvlils:8La14YnpwFX5ZWvf@aws-1-sa-east-1.pooler.supabase.com:6543/postgres"
 
-engine = create_engine(DATABASE_URL, echo=False, future=True)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
